@@ -27,7 +27,6 @@ const getTodosByCategory = async ({
         ScanIndexForward: false,
       })
       .promise();
-    console.log(Items);
 
     return Items;
   } catch (err) {

@@ -58,6 +58,14 @@ export class MyTodoAppApiStack extends cdk.Stack {
       xrayEnabled: true,
     });
 
+    // AppSync cache
+    // new appsync.CfnApiCache(this, 'MyTodoAppAppSyncApiCache', {
+    //   apiCachingBehavior: 'FULL_REQUEST_CACHING',
+    //   ttl: 300,
+    //   apiId: api.apiId,
+    //   type: 'SMALL',
+    // });
+
     // Gateway Lambda
     const mainLambda = new lambda.Function(this, 'MyTodoAppMainLambda', {
       runtime: lambda.Runtime.NODEJS_14_X,

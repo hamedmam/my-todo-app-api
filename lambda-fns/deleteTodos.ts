@@ -22,7 +22,6 @@ const deleteTodo = async ({ userId, id }: { userId: string; id: string }) => {
         },
       })
       .promise();
-    console.log(res);
 
     return true;
   } catch (err) {

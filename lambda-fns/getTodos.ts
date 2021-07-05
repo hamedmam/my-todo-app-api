@@ -15,7 +15,6 @@ const getTodos = async (userId: string) => {
         ScanIndexForward: false,
       })
       .promise();
-    console.log(Items);
 
     return Items;
   } catch (err) {

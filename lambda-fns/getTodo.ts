@@ -15,7 +15,6 @@ const getTodo = async ({ id, userId }: { id: string; userId: string }) => {
         ExpressionAttributeValues: { ':userId': userId, ':id': id },
       })
       .promise();
-    console.log(Items![0]);
 
     return Items![0];
   } catch (err) {

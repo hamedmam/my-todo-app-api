@@ -28,7 +28,6 @@ const getDueTodos = async (userId: string) => {
         ScanIndexForward: false,
       })
       .promise();
-    console.log(Items);
 
     return Items;
   } catch (err) {

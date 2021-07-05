@@ -14,7 +14,6 @@ const getCategories = async (userId: string) => {
         ExpressionAttributeValues: { ':userId': userId },
       })
       .promise();
-    console.log(Items);
 
     return Items;
   } catch (err) {
