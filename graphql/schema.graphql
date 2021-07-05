@@ -12,6 +12,10 @@ type Query {
     @aws_api_key
     @aws_cognito_user_pools
 
+  getTodosByStatus(status: String!): [Todo!]
+    @aws_api_key
+    @aws_cognito_user_pools
+
   getTodo(id: ID!): Todo @aws_api_key @aws_cognito_user_pools
 
   getCategories: [Category!] @aws_api_key @aws_cognito_user_pools
@@ -28,9 +32,13 @@ type Mutation {
 
   deleteTodo(id: ID!): Boolean! @aws_api_key @aws_cognito_user_pools
 
-  updateTodo(id: ID!, title: String!, description: String!, dueAt: Int!): Todo!
-    @aws_api_key
-    @aws_cognito_user_pools
+  updateTodo(
+    id: ID!
+    title: String!
+    description: String!
+    dueAt: Int!
+    status: String!
+  ): Todo! @aws_api_key @aws_cognito_user_pools
 
   createCategory(name: String!, color: String!): Category!
     @aws_api_key

@@ -113,6 +113,11 @@ export class MyTodoAppApiStack extends cdk.Stack {
       fieldName: 'getTodosByCategory',
     });
 
+    lambdaDs.createResolver({
+      typeName: 'Query',
+      fieldName: 'getTodosByStatus',
+    });
+
     // Tables
     const todoTable = new dynamodb.Table(this, 'MyTodoAppTodoTable', {
       billingMode: dynamodb.BillingMode.PAY_PER_REQUEST,

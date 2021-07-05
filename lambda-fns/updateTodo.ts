@@ -8,10 +8,11 @@ type UpdateTodoType = {
   title: string;
   description: string;
   dueAt: number;
+  status: string;
 };
 
 const updateTodo = async (updatedTodo: UpdateTodoType) => {
-  const { userId, id, title, description, dueAt } = updatedTodo;
+  const { userId, id, title, description, dueAt, status } = updatedTodo;
   try {
     const res = await db
       .update({
@@ -21,15 +22,24 @@ const updateTodo = async (updatedTodo: UpdateTodoType) => {
           userId,
         },
         UpdateExpression:
-          'set title = :title, description = :description, dueAt = :dueAt',
+          'set title = :title, description = :description, dueAt = :dueAt, #s = :status',
+        ExpressionAttributeNames: {
+          '#s': 'status',
+        },
         ExpressionAttributeValues: {
           ':title': title,
           ':description': description,
           ':dueAt': dueAt,
+          ':status': status,
         },
         ReturnValues: 'ALL_NEW',
       })
       .promise();
+
+    console.log({
+      ...res.Attributes,
+      ...updatedTodo,
+    });
 
     return {
       ...res.Attributes,

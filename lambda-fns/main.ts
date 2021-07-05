@@ -7,6 +7,7 @@ import getDueTodos from './getDueTodos';
 import getTodosByCategory from './getTodosByCategory';
 import deleteTodo from './deleteTodos';
 import updateTodo from './updateTodo';
+import getTodosByStatus from './getTodosByStatus';
 
 export type Category = {
   color: string;
@@ -24,6 +25,7 @@ type AppSyncEvent = {
     color: string;
     title: string;
     description: string;
+    status: string;
     dueAt: number;
     categoryName: string;
     categoryColor: string;
@@ -41,6 +43,7 @@ exports.handler = async (event: AppSyncEvent) => {
     color,
     title,
     description,
+    status,
     dueAt,
     categoryColor,
     categoryName,
@@ -56,13 +59,22 @@ exports.handler = async (event: AppSyncEvent) => {
         categoryName,
       });
     case 'updateTodo':
-      return await updateTodo({ userId, id, title, description, dueAt });
+      return await updateTodo({
+        userId,
+        id,
+        title,
+        description,
+        dueAt,
+        status,
+      });
     case 'getTodos':
       return await getTodos(userId);
     case 'getDueTodos':
       return await getDueTodos(userId);
     case 'getTodosByCategory':
       return await getTodosByCategory({ userId, categoryName });
+    case 'getTodosByStatus':
+      return await getTodosByStatus({ userId, status });
     case 'getTodo':
       return await getTodo({ id, userId });
     case 'deleteTodo':
