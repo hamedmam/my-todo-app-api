@@ -24,6 +24,7 @@ const createTodo = async (
 
   const todo = {
     id,
+    status: 'todo',
     ...newTodo,
   };
 
