@@ -36,11 +36,6 @@ const updateTodo = async (updatedTodo: UpdateTodoType) => {
       })
       .promise();
 
-    console.log({
-      ...res.Attributes,
-      ...updatedTodo,
-    });
-
     return {
       ...res.Attributes,
       ...updatedTodo,
