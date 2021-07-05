@@ -19,6 +19,7 @@ const getDueTodos = async (userId: string) => {
       .query({
         TableName: process.env.TODO_TABLE || '',
         IndexName: 'dueAtIndex',
+        FilterExpression: 'status = done',
         KeyConditionExpression: '#userId = :userId AND #dueAt = :dueAt',
         ExpressionAttributeNames: {
           '#userId': 'userId',
